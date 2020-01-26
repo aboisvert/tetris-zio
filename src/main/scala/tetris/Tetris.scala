@@ -1,16 +1,15 @@
 package tetris
 
+import java.awt.{Dimension, Graphics, Graphics2D, Image, Rectangle}
+import java.awt.{Color => AWTColor}
+import javax.swing.{Timer => SwingTimer, AbstractAction}
 import javax.swing.SwingUtilities
-import scala.swing._
-import scala.swing.event._
-import zio._
+import scala.swing.{Font, MainFrame, Panel, SimpleSwingApplication}
+import scala.swing.event.Key._
+import scala.swing.event.KeyPressed
+import zio.{DefaultRuntime, IO, Task}
 
 object Tetris extends SimpleSwingApplication {
-  import event.Key._
-  import java.awt.{Dimension, Graphics, Graphics2D, Image, Rectangle}
-  import java.awt.{Color => AWTColor}
-  import javax.swing.{Timer => SwingTimer, AbstractAction}
-
   val bluishGray = new AWTColor(48, 99, 99)
   val bluishLigherGray = new AWTColor(79, 130, 130)
   val bluishEvenLigher = new AWTColor(145, 196, 196)

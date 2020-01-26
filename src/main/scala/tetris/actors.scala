@@ -1,9 +1,8 @@
 package tetris
 
 import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-import zio._
-import zio.actors._
+import zio.{IO, Task}
+import zio.actors.{Actor, ActorRef, ActorSystem, Context, Supervisor}
 
 sealed trait GameMessage[+RESPONSE]
 case object MoveLeft extends GameMessage[Unit]

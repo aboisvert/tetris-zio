@@ -1,8 +1,8 @@
 package tetris
 
 import zio.{Schedule, Task}
-import zio.actors._
-import zio.duration._
+import zio.actors.ActorRef
+import zio.duration.durationInt
 
 class Controller(val gameActor: ActorRef[Throwable, GameMessage]) {
   def movePieceLeft() = gameActor ! MoveLeft
