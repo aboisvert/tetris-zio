@@ -3,10 +3,7 @@ package tetris
 case class Position[T](x: T, y: T)
 
 object Position {
-  def fromTuple[T](t: (T, T)): Position[T] = {
-    val (x, y) = t
-    Position(x, y)
-  }
+  implicit def fromTuple[T](t: (T, T)): Position[T] = Position(t._1, t._2)
 }
 
 case class Block( //
