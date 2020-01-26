@@ -37,7 +37,7 @@ case class GameState(
   def markOccupiedBlocks(p: Piece): GameState = this.copy(blocks = blocks ++ p.occupiedBlocks)
 
   def pieceFits(p: Piece): Boolean = {
-    def inBounds(pos: Position) =
+    def inBounds(pos: Position[Int]) =
       (pos.x >= 0) && (pos.x < columns) && (pos.y >= 0) && (pos.y < rows)
     val occupiedPositions = p.occupiedBlockPositions
     ((occupiedPositions forall inBounds) &&
@@ -53,7 +53,7 @@ object GameState {
   val defaultGameState = newState(Nil, GridSize(10, 23), randomPieces(new Random))
 
   def newState(blocks: Seq[Block], gridSize: GridSize, comingPieces: Seq[PieceKind]): GameState = {
-    val dummy = Piece(PositionD(0, 0), OKind)
+    val dummy = Piece(Position(0.0d, 0.0d), OKind)
     val initialDummyState =
       placeNextPiece(GameState(Nil, gridSize, dummy, comingPieces)).copy(blocks = blocks)
     placeNextPiece(initialDummyState)
@@ -85,7 +85,7 @@ object GameState {
 
   def placeNextPiece(prevState: GameState): GameState = {
     import prevState.gridSize.{columns, rows}
-    def dropOffPos = PositionD(columns / 2.0, rows - 2.0)
+    def dropOffPos = Position(columns / 2.0, rows - 2.0)
     val nextPiece = Piece(dropOffPos, prevState.comingPieces.head)
     def nextState =
       prevState

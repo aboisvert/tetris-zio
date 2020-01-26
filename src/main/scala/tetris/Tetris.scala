@@ -51,7 +51,7 @@ object Tetris extends SimpleSwingApplication {
     drawStatus(g, Position(2 * unit, 10), view)
   }
 
-  def drawStatus(g: Graphics2D, offset: Position, view: GameView): Unit = {
+  def drawStatus(g: Graphics2D, offset: Position[Int], view: GameView): Unit = {
     g.setColor(bluishSilver)
     g.setFont(Font.apply("monospaced", Font.Bold, 24))
     if (view.status == GameOver) {
@@ -61,12 +61,12 @@ object Tetris extends SimpleSwingApplication {
 
   def drawBoard(
     g: Graphics2D,
-    offset: Position,
+    offset: Position[Int],
     gridSize: GridSize,
     blocks: Seq[Block],
     current: Seq[Block]
   ): Unit = {
-    def buildRect(pos: Position): Rectangle =
+    def buildRect(pos: Position[Int]): Rectangle =
       new Rectangle(
         offset.x + pos.x * (blockSize + blockMargin),
         offset.y + (gridSize.rows - pos.y - 1) * (blockSize + blockMargin),
